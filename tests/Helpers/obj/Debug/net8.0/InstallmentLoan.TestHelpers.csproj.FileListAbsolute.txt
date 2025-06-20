@@ -1,0 +1,11 @@
+/Users/surya/TBC/Installment-loan/tests/Helpers/bin/Debug/net8.0/InstallmentLoan.TestHelpers.deps.json
+/Users/surya/TBC/Installment-loan/tests/Helpers/bin/Debug/net8.0/InstallmentLoan.TestHelpers.dll
+/Users/surya/TBC/Installment-loan/tests/Helpers/bin/Debug/net8.0/InstallmentLoan.TestHelpers.pdb
+/Users/surya/TBC/Installment-loan/tests/Helpers/obj/Debug/net8.0/InstallmentLoan.TestHelpers.GeneratedMSBuildEditorConfig.editorconfig
+/Users/surya/TBC/Installment-loan/tests/Helpers/obj/Debug/net8.0/InstallmentLoan.TestHelpers.AssemblyInfoInputs.cache
+/Users/surya/TBC/Installment-loan/tests/Helpers/obj/Debug/net8.0/InstallmentLoan.TestHelpers.AssemblyInfo.cs
+/Users/surya/TBC/Installment-loan/tests/Helpers/obj/Debug/net8.0/InstallmentLoan.TestHelpers.csproj.CoreCompileInputs.cache
+/Users/surya/TBC/Installment-loan/tests/Helpers/obj/Debug/net8.0/InstallmentLoan.TestHelpers.dll
+/Users/surya/TBC/Installment-loan/tests/Helpers/obj/Debug/net8.0/refint/InstallmentLoan.TestHelpers.dll
+/Users/surya/TBC/Installment-loan/tests/Helpers/obj/Debug/net8.0/InstallmentLoan.TestHelpers.pdb
+/Users/surya/TBC/Installment-loan/tests/Helpers/obj/Debug/net8.0/ref/InstallmentLoan.TestHelpers.dll

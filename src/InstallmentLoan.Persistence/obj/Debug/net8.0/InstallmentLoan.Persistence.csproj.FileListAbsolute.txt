@@ -1,0 +1,11 @@
+/Users/surya/TBC/Installment-loan/src/InstallmentLoan.Persistence/bin/Debug/net8.0/InstallmentLoan.Persistence.deps.json
+/Users/surya/TBC/Installment-loan/src/InstallmentLoan.Persistence/bin/Debug/net8.0/InstallmentLoan.Persistence.dll
+/Users/surya/TBC/Installment-loan/src/InstallmentLoan.Persistence/bin/Debug/net8.0/InstallmentLoan.Persistence.pdb
+/Users/surya/TBC/Installment-loan/src/InstallmentLoan.Persistence/obj/Debug/net8.0/InstallmentLoan.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+/Users/surya/TBC/Installment-loan/src/InstallmentLoan.Persistence/obj/Debug/net8.0/InstallmentLoan.Persistence.AssemblyInfoInputs.cache
+/Users/surya/TBC/Installment-loan/src/InstallmentLoan.Persistence/obj/Debug/net8.0/InstallmentLoan.Persistence.AssemblyInfo.cs
+/Users/surya/TBC/Installment-loan/src/InstallmentLoan.Persistence/obj/Debug/net8.0/InstallmentLoan.Persistence.csproj.CoreCompileInputs.cache
+/Users/surya/TBC/Installment-loan/src/InstallmentLoan.Persistence/obj/Debug/net8.0/InstallmentLoan.Persistence.dll
+/Users/surya/TBC/Installment-loan/src/InstallmentLoan.Persistence/obj/Debug/net8.0/refint/InstallmentLoan.Persistence.dll
+/Users/surya/TBC/Installment-loan/src/InstallmentLoan.Persistence/obj/Debug/net8.0/InstallmentLoan.Persistence.pdb
+/Users/surya/TBC/Installment-loan/src/InstallmentLoan.Persistence/obj/Debug/net8.0/ref/InstallmentLoan.Persistence.dll

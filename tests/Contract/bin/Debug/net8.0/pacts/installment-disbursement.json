@@ -1,0 +1,90 @@
+{
+  "consumer": {
+    "name": "installment"
+  },
+  "interactions": [
+    {
+      "description": "A valid disbursement request",
+      "providerStates": [
+        {
+          "name": "Disbursement service is available"
+        }
+      ],
+      "request": {
+        "body": {
+          "Amount": 1000.0,
+          "LoanId": "12345"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$.Amount": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.LoanId": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "method": "POST",
+        "path": "/api/disbursement"
+      },
+      "response": {
+        "body": {
+          "DisbursementId": "abc-123",
+          "Message": "Success"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$.DisbursementId": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.Message": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          },
+          "header": {}
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pactRust": {
+      "ffi": "0.3.11",
+      "models": "0.4.5"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "disbursement"
+  }
+}
