@@ -30,12 +30,12 @@ jobs:
 
       - name: Copy pact files to main repo
         run: | 
-          cp -r ./pacts/api/*  ./pact-contracts/api/ || echo "No pact api files to copy"
-          cp -r ./pacts/messages/* ./pact-contracts/messages/ || echo "No pact messages files to copy"
+          cp -r ./pacts/api/*  ./pact-contracts/pacts/api/ || echo "No pact api files to copy"
+          cp -r ./pacts/messages/* ./pact-contracts/pacts/messages/ || echo "No pact messages files to copy"
 
       - name: Commit and push pact files
         run: |
-          cd pact-contracts
+          cd pact-contracts/pacts
           pwd
           ls -la
           git config user.email "github-actions[bot]@users.noreply.github.com"
