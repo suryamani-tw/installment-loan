@@ -30,6 +30,8 @@ jobs:
 
       - name: Copy pact files to main repo
         run: | 
+          pwd
+          ls -la
           cp -r ./pacts/api/* pacts/api || echo "No pact api files to copy"
           cp -r ./pacts/messages/* pacts/messages || echo "No pact messages files to copy"
 
