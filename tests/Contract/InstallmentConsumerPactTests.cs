@@ -17,9 +17,10 @@ public class InstallmentConsumerPactTests
 
     public InstallmentConsumerPactTests()
     {
+        var repoRoot = Path.GetFullPath(Path.Combine(System.AppContext.BaseDirectory, "..", "..", "..", "..", ".."));
         var config = new PactConfig
         {
-            PactDir = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..","..","..", "pacts", Type),
+            PactDir = Path.Combine(repoRoot, "pacts", Type),
             LogLevel = PactLogLevel.Debug
         };
 

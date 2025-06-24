@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InstallmentLoan.ContractTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e4d223ac766a86be6312f2d47ef1ccd557841902")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b4cb648d1066a289bc0d3ca8b73c5d654788c84d")]
 [assembly: System.Reflection.AssemblyProductAttribute("InstallmentLoan.ContractTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InstallmentLoan.ContractTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
