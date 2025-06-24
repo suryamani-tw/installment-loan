@@ -26,7 +26,6 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
-          cache: true
 
       - name: Execute Contract Tests
         run: dotnet test tests/Contract/InstallmentLoan.ContractTests.csproj --logger "console;verbosity=detailed"
