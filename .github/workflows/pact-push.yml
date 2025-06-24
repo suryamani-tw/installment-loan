@@ -1,55 +1,91 @@
 name: Run Contract Tests and Push Pact Files
 
+# Workflow to run contract tests and push generated pact files to a shared repository
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  pact:
+  pact-contract-tests:
+    name: Pact Contract Tests and Publish
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
-      - name: Checkout main repo
+      - name: Checkout Main Repository
         uses: actions/checkout@v4
+        with:
+          fetch-options: '--depth=1'
 
-      - name: Setup .NET
+      - name: Setup .NET Environment
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
+          cache: true
 
-      - name: Run contract tests
-        run: dotnet test tests/Contract/InstallmentLoan.ContractTests.csproj
+      - name: Execute Contract Tests
+        run: dotnet test tests/Contract/InstallmentLoan.ContractTests.csproj --logger "console;verbosity=detailed"
 
-      - name: Checkout shared pact repo
+      - name: Checkout Shared Pact Repository
         uses: actions/checkout@v4
         with:
           repository: suryamani-tw/pact-contracts
           token: ${{ secrets.PACT_PUSH_TOKEN }}
           path: pact-contracts
+          fetch-options: '--depth=1'
 
-      - name: Copy pact files to main repo
-        run: | 
-          cp -r ./pacts/api/*  ./pact-contracts/pacts/api/ || echo "No pact api files to copy"
-          cp -r ./pacts/messages/* ./pact-contracts/pacts/messages/ || echo "No pact messages files to copy"
-
-      - name: Commit and push pact files
+      - name: Copy Pact Files to Shared Repository
         run: |
+          # Copy API pact files if they exist
+          if [ -d "./pacts/api" ] && [ -n "$(ls -A ./pacts/api)" ]; then
+            cp -r ./pacts/api/* ./pact-contracts/pacts/api/ && echo "API pact files copied successfully"
+          else
+            echo "No API pact files to copy"
+          fi
+          # Copy Messages pact files if they exist
+          if [ -d "./pacts/messages" ] && [ -n "$(ls -A ./pacts/messages)" ]; then
+            cp -r ./pacts/messages/* ./pact-contracts/pacts/messages/ && echo "Messages pact files copied successfully"
+          else
+            echo "No Messages pact files to copy"
+          fi
+
+      - name: Commit and Push Updated Pact Files
+        env:
+          BUILD_NUMBER: ${{ github.run_number }}
+          GIT_SHA: ${{ github.sha }}
+        run: |
+          # Capture the main repository name before changing context
           REPO_NAME=$(basename $(git rev-parse --show-toplevel))
-          cd pact-contracts/pacts
+          echo "Main repository name: $REPO_NAME"
+          
+          # Navigate to the shared pact repository
+          cd pact-contracts
+          echo "Current directory: $(pwd)"
+          ls -la
+          
+          # Configure git user for commits
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          if [ -d "api" ]; then
-            git add api/* || echo "No pact api files to add"
+          
+          # Add pact files if directories exist
+          if [ -d "pacts/api" ]; then
+            git add pacts/api/* || echo "No new API pact files to add"
           else
-            echo "Api directory does not exist, skipping git add for api"
+            echo "API directory does not exist, skipping git add for API"
           fi
-          if [ -d "messages" ]; then
-            git add messages/* || echo "No pact messages files to add"
+          if [ -d "pacts/messages" ]; then
+            git add pacts/messages/* || echo "No new Messages pact files to add"
           else
-            echo "Messages directory does not exist, skipping git add for messages"
+            echo "Messages directory does not exist, skipping git add for Messages"
           fi
-          BUILD_NUMBER=${{ github.run_number }}
-          GIT_SHA=${{ github.sha }}
-          git commit -m "Update pact files from contract test run $REPO_NAME | build $BUILD_NUMBER | sha $GIT_SHA" || echo "No changes to commit"
-          git push origin main
+          
+          # Commit changes with details from the main repository
+          git commit -m "Update pact files $REPO_NAME | build $BUILD_NUMBER | sha $GIT_SHA" || echo "No changes to commit"
+          
+          # Push changes to the shared repository
+          git push origin main || echo "Push failed, possibly no changes or permission issues"
