@@ -102,3 +102,4 @@
 /Users/surya/TBC/Installment-loan/tests/Contract/bin/Debug/net8.0/runtimes/win-x64/native/pact_ffi.dll
 /Users/surya/TBC/Installment-loan/tests/Contract/obj/Debug/net8.0/Installm.53DDB55E.Up2Date
 /Users/surya/TBC/Installment-loan/tests/Contract/bin/Debug/net8.0/runtimes/linux-arm64/native/libpact_ffi.so
+/Users/surya/TBC/Installment-loan/tests/Contract/obj/Debug/net8.0/InstallmentLoan.ContractTests.sourcelink.json
