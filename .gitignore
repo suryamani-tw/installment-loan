@@ -1,0 +1,44 @@
+# .NET Core
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio
+.vs/
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Project-specific
+appsettings.Development.json
+appsettings.json
+
+# Test results
+TestResults/
+*.trx
+*.xml
+
+# Build output
+build/
+dist/
+out/
+
+# Dependencies
+packages/
+node_modules/
+
+# Contract Testing
+pacts/
+
+# Miscellaneous
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
