@@ -30,8 +30,8 @@ jobs:
 
       - name: Copy pact files to main repo
         run: | 
-          cp -r ./pacts/api/*  ./pact-contracts/api || echo "No pact api files to copy"
-          cp -r ./pacts/messages/* ./pact-contracts/messages || echo "No pact messages files to copy"
+          cp -r ./pacts/api/*  ./pact-contracts/api/ || echo "No pact api files to copy"
+          cp -r ./pacts/messages/* ./pact-contracts/messages/ || echo "No pact messages files to copy"
 
       - name: Commit and push pact files
         run: |
@@ -40,7 +40,16 @@ jobs:
           ls -la
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git add api messages || echo "No pact files to add"
+          if [ -d "api" ]; then
+            git add api/* || echo "No pact api files to add"
+          else
+            echo "Api directory does not exist, skipping git add for api"
+          fi
+          if [ -d "messages" ]; then
+            git add messages/* || echo "No pact messages files to add"
+          else
+            echo "Messages directory does not exist, skipping git add for messages"
+          fi
           REPO_NAME=$(basename $(git rev-parse --show-toplevel))
           BUILD_NUMBER=${{ github.run_number }}
           GIT_SHA=${{ github.sha }}
