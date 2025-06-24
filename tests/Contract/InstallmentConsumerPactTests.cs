@@ -10,7 +10,6 @@ using Xunit;
 public class InstallmentConsumerPactTests
 {
     private const string Consumer = "installment";
-    private const string Provider = "disbursement";
     private const string Type = "api";
 
     private readonly IPactBuilderV3 _pact;
@@ -19,7 +18,7 @@ public class InstallmentConsumerPactTests
     {
         var config = new PactConfig
         {
-            PactDir = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..","..","..", "pacts", Type, Provider),
+            PactDir = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..","..","..", "pacts", Type),
             LogLevel = PactLogLevel.Debug
         };
 
