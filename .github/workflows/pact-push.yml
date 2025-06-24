@@ -26,18 +26,17 @@ jobs:
         with:
           repository: suryamani-tw/pact-contracts
           token: ${{ secrets.PACT_PUSH_TOKEN }}
-          path: pacts
 
       - name: Copy pact files to main repo
         run: | 
-          pwd
-          ls -la
-          cp -r ./pacts/api/* pacts/api || echo "No pact api files to copy"
-          cp -r ./pacts/messages/* pacts/messages || echo "No pact messages files to copy"
+          cp -r ./pacts/api/*  pact-contracts/api || echo "No pact api files to copy"
+          cp -r ./pacts/messages/* pact-contracts/messages || echo "No pact messages files to copy"
 
       - name: Commit and push pact files
         run: |
-          cd pacts
+          cd pact-contracts
+          pwd
+          ls -la
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
           git add pacts/
