@@ -35,9 +35,8 @@ jobs:
 
       - name: Commit and push pact files
         run: |
+          REPO_NAME=$(basename $(git rev-parse --show-toplevel))
           cd pact-contracts/pacts
-          pwd
-          ls -la
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
           if [ -d "api" ]; then
@@ -50,7 +49,6 @@ jobs:
           else
             echo "Messages directory does not exist, skipping git add for messages"
           fi
-          REPO_NAME=$(basename $(git rev-parse --show-toplevel))
           BUILD_NUMBER=${{ github.run_number }}
           GIT_SHA=${{ github.sha }}
           git commit -m "Update pact files from contract test run $REPO_NAME | build $BUILD_NUMBER | sha $GIT_SHA" || echo "No changes to commit"
