@@ -1,0 +1,41 @@
+name: Run Contract Tests and Push Pact Files
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  pact:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Run contract tests
+        run: dotnet test tests/Contract/InstallmentLoan.ContractTests.csproj
+
+      - name: Checkout shared pact repo
+        uses: actions/checkout@v4
+        with:
+          repository: suryamani-tw/pact-contracts
+          token: ${{ secrets.PACT_PUSH_TOKEN }}
+          path: shared-pact-repo
+
+      - name: Copy pact files to shared repo
+        run: cp -r tests/Contract/pacts/* shared-pact-repo/
+
+      - name: Commit and push pact files
+        run: |
+          cd shared-pact-repo
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add .
+          git commit -m "Update pact files from contract test run" || echo "No changes to commit"
+          git push origin main
