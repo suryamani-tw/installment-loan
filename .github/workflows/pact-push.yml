@@ -29,8 +29,9 @@ jobs:
           path: pacts
 
       - name: Copy pact files to main repo
-        run: cp -r ./pacts/api/* pacts/api || echo "No pact api files to copy"
-        run: cp -r ./pacts/messages/* pacts/messages || echo "No pact messages files to copy"
+        run: | 
+          cp -r ./pacts/api/* pacts/api || echo "No pact api files to copy"
+          cp -r ./pacts/messages/* pacts/messages || echo "No pact messages files to copy"
 
       - name: Commit and push pact files
         run: |
