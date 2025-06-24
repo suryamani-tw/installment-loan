@@ -20,12 +20,13 @@ jobs:
       - name: Checkout Main Repository
         uses: actions/checkout@v4
         with:
-          fetch-options: '--depth=1'
+          fetch-depth: 1
 
       - name: Setup .NET Environment
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
+          cache: true
 
       - name: Execute Contract Tests
         run: dotnet test tests/Contract/InstallmentLoan.ContractTests.csproj --logger "console;verbosity=detailed"
@@ -36,7 +37,7 @@ jobs:
           repository: suryamani-tw/pact-contracts
           token: ${{ secrets.PACT_PUSH_TOKEN }}
           path: pact-contracts
-          fetch-options: '--depth=1'
+          fetch-depth: 1
 
       - name: Copy Pact Files to Shared Repository
         run: |
