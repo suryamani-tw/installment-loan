@@ -26,16 +26,19 @@ jobs:
         with:
           repository: suryamani-tw/pact-contracts
           token: ${{ secrets.PACT_PUSH_TOKEN }}
-          path: shared-pact-repo
+          path: pact-contracts
 
-      - name: Copy pact files to shared repo
-        run: cp -r tests/Contract/pacts/* shared-pact-repo/
+      - name: Copy pact files to main repo
+        run: cp -r tests/Contract/pacts/* pact-contracts/ || echo "No pact files to copy"
 
       - name: Commit and push pact files
         run: |
-          cd shared-pact-repo
+          cd pact-contracts
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git add .
-          git commit -m "Update pact files from contract test run" || echo "No changes to commit"
+          git add pacts/
+          REPO_NAME=$(basename $(git rev-parse --show-toplevel))
+          BUILD_NUMBER=${{ github.run_number }}
+          GIT_SHA=${{ github.sha }}
+          git commit -m "Update pact files from contract test run of $REPO_NAME | build $BUILD_NUMBER | sha $GIT_SHA" || echo "No changes to commit"
           git push origin main
