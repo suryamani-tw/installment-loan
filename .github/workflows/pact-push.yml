@@ -48,7 +48,7 @@ jobs:
           fi
           # Copy Messages pact files if they exist
           if [ -d "./pacts/message" ] && [ -n "$(ls -A ./pacts/message)" ]; then
-            cp -r ./pacts/message/* ./pact-contracts/pacts/message/ && echo "Messages pact files copied successfully"
+            cp -r ./pacts/message/* ./pact-contracts/pacts/messages/ && echo "Messages pact files copied successfully"
           else
             echo "No Messages pact files to copy"
           fi
