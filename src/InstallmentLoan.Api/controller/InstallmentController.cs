@@ -1,9 +1,8 @@
 // Controllers/InstallmentController.cs
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
+using InstallmentLoan.Api.Models;
 
 [ApiController]
 [Route("api/[controller]")]

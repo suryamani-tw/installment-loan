@@ -13,7 +13,7 @@ public class InstallmentConsumerPactTests
     private const string Provider = "disbursement";
     private const string Type = "api";
 
-    private readonly IPactBuilderV3 _pact;
+    private readonly IPactBuilderV4 _httpPact;
 
     public InstallmentConsumerPactTests()
     {
@@ -24,17 +24,17 @@ public class InstallmentConsumerPactTests
             LogLevel = PactLogLevel.Debug
         };
 
-        _pact = Pact.V3(Consumer, Provider, config).WithHttpInteractions();
+        _httpPact = Pact.V4(Consumer, Provider, config).WithHttpInteractions();
     }
 
     [Fact]
-    public async Task PostDisbursement_WhenValidRequest_ReturnsSuccessResponse()
+    public async Task Generate_Pact_Initiate_Disbursement_Request()
     {
         // Arrange
-        const string interactionDescription = "A valid disbursement request";
+        const string interactionDescription = "A valid initiate disbursement request";
         const string endpoint = "/api/disbursement";
         
-        _pact
+        _httpPact
             .UponReceiving(interactionDescription)
             .WithRequest(HttpMethod.Post, endpoint)
             .WithHeader("Content-Type", "application/json")
@@ -53,7 +53,7 @@ public class InstallmentConsumerPactTests
             });
 
         // Act & Assert
-        await _pact.VerifyAsync(async ctx =>
+        await _httpPact.VerifyAsync(async ctx =>
         {
             using var httpClient = new HttpClient { BaseAddress = ctx.MockServerUri };
             var request = new
@@ -75,4 +75,5 @@ public class InstallmentConsumerPactTests
             Assert.Equal("abc-123", doc.RootElement.GetProperty("DisbursementId").GetString());
         });
     }
+
 }

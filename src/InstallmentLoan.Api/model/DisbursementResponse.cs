@@ -1,3 +1,5 @@
+namespace InstallmentLoan.Api.Models;
+
 public class DisbursementResponse
 {
     public string LoanId { get; set; }
